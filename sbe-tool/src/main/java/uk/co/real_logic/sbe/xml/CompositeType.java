@@ -183,10 +183,6 @@ public class CompositeType extends Type
         {
             XmlSchemaParser.handleError(node, "\"numInGroup\" must be unsigned type");
         }
-        else if (numInGroupType.primitiveType() != UINT8 && numInGroupType.primitiveType() != UINT16)
-        {
-            XmlSchemaParser.handleWarning(node, "\"numInGroup\" should be UINT8 or UINT16");
-        }
         else
         {
             final PrimitiveValue maxValue = numInGroupType.maxValue();
@@ -227,10 +223,6 @@ public class CompositeType extends Type
             if (!isUnsigned(primitiveType))
             {
                 XmlSchemaParser.handleError(node, "\"length\" must be unsigned type");
-            }
-            else if (primitiveType != UINT8 && primitiveType != UINT16 && primitiveType != UINT32)
-            {
-                XmlSchemaParser.handleWarning(node, "\"length\" should be UINT8, UINT16, or UINT32");
             }
 
             validateMaxValue(node, primitiveType, lengthType.maxValue());
@@ -295,36 +287,32 @@ public class CompositeType extends Type
         {
             XmlSchemaParser.handleError(node, "\"blockLength\" must be unsigned");
         }
-        else if (blockLengthType.primitiveType() != UINT16)
-        {
-            XmlSchemaParser.handleWarning(node, "\"blockLength\" should be UINT16");
-        }
 
         if (templateIdType == null)
         {
             XmlSchemaParser.handleError(node, "composite for message header must have \"templateId\"");
         }
-        else if (templateIdType.primitiveType() != UINT16)
+        else if (!isUnsigned(templateIdType.primitiveType()))
         {
-            XmlSchemaParser.handleError(node, "\"templateId\" must be UINT16");
+            XmlSchemaParser.handleError(node, "\"templateId\" must be unsigned");
         }
 
         if (schemaIdType == null)
         {
             XmlSchemaParser.handleError(node, "composite for message header must have \"schemaId\"");
         }
-        else if (schemaIdType.primitiveType() != UINT16)
+        else if (!isUnsigned(schemaIdType.primitiveType()))
         {
-            XmlSchemaParser.handleError(node, "\"schemaId\" must be UINT16");
+            XmlSchemaParser.handleError(node, "\"schemaId\" must be unsigned");
         }
 
         if (versionType == null)
         {
             XmlSchemaParser.handleError(node, "composite for message header must have \"version\"");
         }
-        else if (versionType.primitiveType() != UINT16)
+        else if (!isUnsigned(versionType.primitiveType()))
         {
-            XmlSchemaParser.handleError(node, "\"version\" must be UINT16");
+            XmlSchemaParser.handleError(node, "\"version\" must be unsigned");
         }
     }
 
