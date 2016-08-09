@@ -859,7 +859,7 @@ public class CppGenerator implements CodeGenerator
             for (final String incName : typesToInclude)
             {
                 sb.append(String.format(
-                    "#include \"%1$s.h\"\n",
+                    "#include \"%1$s.hpp\"\n",
                     toUpperFirstChar(incName)
                 ));
             }

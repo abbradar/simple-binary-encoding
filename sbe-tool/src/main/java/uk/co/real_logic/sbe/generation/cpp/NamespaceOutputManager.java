@@ -65,7 +65,7 @@ public class NamespaceOutputManager implements OutputManager
      */
     public Writer createOutput(final String name) throws IOException
     {
-        final File targetFile = new File(outputDir, name + ".h");
+        final File targetFile = new File(outputDir, name + ".hpp");
         return new BufferedWriter(new OutputStreamWriter(new FileOutputStream(targetFile), "UTF-8"));
     }
 }
